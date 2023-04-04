@@ -1,2 +1,7 @@
-# Logistic_Regression_Credit
-Data analysis performed on a supplied CSV file containing a dataset of various credit card records.
+# Logistic Regression on Credit Card Data
+
+   The data set being used for reference within this report is the “credit_card_default.csv” file that houses various credit card statistics that will be used to extract valuable data about financial trends. These results can be used to measure the interactions between socio-economic status and financial credibility, gain insight to the effects relative life scenarios have on an individual’s financial discretion, or extract financial trends based on current consumer choices that are led by modern social circumstances. In this instance, the data will be used to discover defaulting trends based on individual circumstances.
+   
+   The data will be utilized to extract valuable statistics regarding the socio-economic differences of discrete individuals that are based on various characteristics derived from the party’s financial discretion and life circumstances. The statistics will be derived using various statistical analysis methods, including the following: logistic regression models, confidence intervals, Hosmer-Lemeshow Goodness of Fit tests, confusion matrices, and ROC curves.
+
+Reference: Yeh, I. C., & Lien, C. H. (2009). The comparisons of data mining techniques for the predictive accuracy of probability of default of credit card clients. Expert Systems with Applications, 36(2), 2473-2480. Retrieved from https://archive.ics.uci.edu/ml/datasets/default+of+credit+card+clients
