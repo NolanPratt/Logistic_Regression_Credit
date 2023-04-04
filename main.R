@@ -42,33 +42,6 @@ print(paste0("Percentage increase in defaulting odds: ", round(exp(0.343869)-1, 
 
 
 # +------------------------Testing the model1 fit------------------------+ #
-# Generate Confusion matrix for the logit model
-print("Prediction: education is high school (education='1'), credit utilization is 40% (credit_utilize=0.40)")
-newdata1 <- data.frame(education="1", credit_utilize=0.40)
-pred1 <- predict(logit, newdata1, type='response')
-round(pred1, 4)
-
-print("Prediction: education is postgraduate (education='3'), credit utilization is 35% (credit_utilize=0.35)")
-newdata2 <- data.frame(education="3", credit_utilize=0.35)
-pred2 <- predict(logit, newdata2, type='response')
-round(pred2, 4)
-
-# ============================= #
-
-# Wald confidence interval for logit
-conf_int <- confint.default(logit, level=0.95)
-round(conf_int,4)
-
-# ============================= #
-
-# Goodness of fit test for the logit model
-library(ResourceSelection)
-print("Hosmer-Lemeshow Goodness of Fit Test")
-hl = hoslem.test(logit$y, fitted(logit), g=50)
-hl
-
-# ============================= #
-
 # Creating Confusion matrix for the logit model performance
 # Predict default or no_default for the data set using the model
 default_model_data <- credit_default[c('education', 'credit_utilize')]
@@ -99,6 +72,20 @@ print(paste0("Model Recall: ", round(TP/(TP+FN), 4)))
 
 # ============================= #
 
+# Wald confidence interval for logit
+conf_int <- confint.default(logit, level=0.95)
+round(conf_int,4)
+
+# ============================= #
+
+# Goodness of fit test for the logit model
+library(ResourceSelection)
+print("Hosmer-Lemeshow Goodness of Fit Test")
+hl = hoslem.test(logit$y, fitted(logit), g=50)
+hl
+
+# ============================= #
+
 # Generate ROC curve for logit values
 library(pROC)
 labels <- credit_default$default
@@ -113,7 +100,6 @@ print("ROC Curve")
 plot(roc, legacy.axes = TRUE)
 
 # +---------------------End of testing the model1 fit---------------------+ #
-
 
 # Utilizing logit prediction model within scenarios
 print("Prediction: education is high school (education='1'), credit utilization is 40% (credit_utilize=0.40)")
@@ -195,14 +181,13 @@ plot(roc2, legacy.axes = TRUE)
 
 # +---------------------End of testing the model2 fit---------------------+ #
 
-
 # Utilizing logit2 prediction model within scenarios
 print("Prediction: asset is only car, missed a payment, & credit utilization is 35% (credit_utilize=0.35)")
-newdata3 <- data.frame(assets='1', missed_payment='1', credit_utilize=0.35)
-pred3 <- predict(logit2, newdata2, type='response')
+newdata3 <- data.frame(assets="1", missed_payment="1", credit_utilize=0.35)
+pred3 <- predict(logit2, newdata3, type='response')
 round(pred3, 4)
 
 print("Prediction: asset is car and house, did not miss a payment, & credit utilization is 35% (credit_utilize=0.35)")
-newdata4 <- data.frame(assets='3', missed_payment='0', credit_utilize=0.35)
+newdata4 <- data.frame(assets="3", missed_payment="0", credit_utilize=0.35)
 pred4 <- predict(logit2, newdata4, type='response')
 round(pred4, 4)
